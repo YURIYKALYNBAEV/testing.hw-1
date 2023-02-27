@@ -24,6 +24,15 @@ public class Main {
                 (min, max) -> System.out.println("Min : " + min + " Max " + max)
         );
         System.out.println();
+
+        findMinMaxVersion2(
+                () -> IntStream
+                        .range(20, 30)
+                        .boxed(),
+                new NumberComparator(),
+                (min, max) -> System.out.println("Min : " + min + " Max " + max)
+        );
+        System.out.println();
     }
 
     public static void task2() {
@@ -56,6 +65,15 @@ public class Main {
             min = arrayList.get(0);
             max = arrayList.get(arrayList.size() - 1);
         }
+        minMaxConsumer.accept(min, max);
+    }
+
+    public static <T> void findMinMaxVersion2(
+            Supplier<Stream<? extends T>> stream,
+            Comparator<? super T> comparator,
+            BiConsumer<? super T, ? super T> minMaxConsumer) {
+        T min = stream.get().min(comparator).orElse(null);
+        T max = stream.get().max(comparator).orElse(null);
         minMaxConsumer.accept(min, max);
     }
 

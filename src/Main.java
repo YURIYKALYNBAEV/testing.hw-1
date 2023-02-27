@@ -59,7 +59,7 @@ public class Main {
         T max = null;
         arrayList = stream
                 .get()
-                .sorted()
+                .sorted(comparator)
                 .collect(Collectors.toList());
         if (arrayList.size() != 0) {
             min = arrayList.get(0);

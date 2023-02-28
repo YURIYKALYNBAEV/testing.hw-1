@@ -39,15 +39,13 @@ public class Main {
         System.out.println("Задача №2");
         List<Integer> integerList = new ArrayList<>();
         int number;
-        int quantityEvenNumbers;
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
             number = random.nextInt() % 100;
             integerList.add(number);
         }
-        System.out.println("Список целых чисел = " + integerList);
-        quantityEvenNumbers = countEvenNumbers(integerList);
-        System.out.println("Количество четных чисел = " + quantityEvenNumbers);
+        System.out.println("Исходный список целых чисел: " + integerList);
+        workingEvenNumbers(integerList);
     }
 
     public static <T> void findMinMax(
@@ -61,7 +59,7 @@ public class Main {
                 .get()
                 .sorted(comparator)
                 .collect(Collectors.toList());
-        if (arrayList.size() != 0) {
+        if (!arrayList.isEmpty()) {
             min = arrayList.get(0);
             max = arrayList.get(arrayList.size() - 1);
         }
@@ -84,10 +82,9 @@ public class Main {
         }
     }
 
-    public static int countEvenNumbers(List<Integer> integerList) {
-        return (int) (integerList
-                .stream()
-                .filter((n) -> (n % 2) == 0))
-                .count();
+    public static void workingEvenNumbers(List<Integer> integerList) {
+        System.out.println("Список четных чисел: " +
+                integerList.stream().filter(i -> i % 2 == 0).collect(Collectors.toList()) + "\n" +
+                "Количество четных чисел: " + integerList.stream().filter(i -> i % 2 == 0).count());
     }
 }

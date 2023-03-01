@@ -86,5 +86,12 @@ public class Main {
         System.out.println("Список четных чисел: " +
                 integerList.stream().filter(i -> i % 2 == 0).collect(Collectors.toList()) + "\n" +
                 "Количество четных чисел: " + integerList.stream().filter(i -> i % 2 == 0).count());
+        System.out.println();
+
+        // версия №2
+        System.out.println("Количество четных чисел: " + integerList.stream()
+                .filter(i -> i % 2 == 0)
+                .peek(e -> System.out.println("Четное число: " + e))
+                .count());
     }
 }
